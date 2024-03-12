@@ -1138,7 +1138,7 @@ void addc_impl( const ptx_instruction *pI, ptx_thread_info *thread )
 
    if(opValue == 0){
    char* filename= new char[64];
-   sprintf(filename,"./trace/bench.%d.%d",src_x,src_y);
+   sprintf(filename,"./bench.%d.%d",src_x,src_y);
    std::fstream toController(filename,std::ios::app);
    long long unsigned int timeNow = thread->get_gpu()->gpu_sim_cycle+thread->get_gpu()->gpu_tot_sim_cycle;
 
@@ -1163,6 +1163,7 @@ void addc_impl( const ptx_instruction *pI, ptx_thread_info *thread )
    {
 	long long unsigned int *dataValue = &data.u64;
 	readFile(src_x,src_y,dst_x,dst_y,dataValue);
+	// thread->get_gpu()->gpu_sim_cycle *= 2;
    thread->set_operand_value(dst, data, i_type, thread, pI, 0, 0  );
    }
    //data.u64 = src1_data.u64 + src2_data.u64;
